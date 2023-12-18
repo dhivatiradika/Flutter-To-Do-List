@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_list/bloc/main/main_bloc.dart';
+import 'package:to_do_list/common/router.dart';
 import 'package:to_do_list/common/theme.dart';
 import 'package:to_do_list/entities/todo_filter.dart';
 
@@ -40,7 +41,7 @@ class _Header extends StatelessWidget {
                 style: titleTextStyle,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => context.router.goToAddToDoPage(),
                 child: Icon(
                   Icons.add,
                   color: Colors.white,
@@ -68,35 +69,29 @@ class _Filter extends StatelessWidget {
       child: BlocBuilder<MainBloc, MainState>(
         buildWhen: (prev, current) => prev.filter != current.filter,
         builder: (context, state) {
-          return Theme(
-            data: ThemeData(
-              colorSchemeSeed: primaryColor,
-              useMaterial3: true,
-            ),
-            child: Row(
-              children: [
-                ChoiceChip(
-                  label: Text("All"),
-                  selected: state.filter == ToDoFilter.all,
-                  onSelected: (_) => mainBloc
-                      .add(const MainEvent.filterChanged(ToDoFilter.all)),
-                ),
-                const SizedBox(width: 5),
-                ChoiceChip(
-                  label: Text("Completed"),
-                  selected: state.filter == ToDoFilter.completed,
-                  onSelected: (_) => mainBloc
-                      .add(const MainEvent.filterChanged(ToDoFilter.completed)),
-                ),
-                const SizedBox(width: 5),
-                ChoiceChip(
-                  label: Text("Incomplete"),
-                  selected: state.filter == ToDoFilter.incomplete,
-                  onSelected: (_) => mainBloc.add(
-                      const MainEvent.filterChanged(ToDoFilter.incomplete)),
-                ),
-              ],
-            ),
+          return Row(
+            children: [
+              ChoiceChip(
+                label: Text("All"),
+                selected: state.filter == ToDoFilter.all,
+                onSelected: (_) => mainBloc
+                    .add(const MainEvent.filterChanged(ToDoFilter.all)),
+              ),
+              const SizedBox(width: 5),
+              ChoiceChip(
+                label: Text("Completed"),
+                selected: state.filter == ToDoFilter.completed,
+                onSelected: (_) => mainBloc
+                    .add(const MainEvent.filterChanged(ToDoFilter.completed)),
+              ),
+              const SizedBox(width: 5),
+              ChoiceChip(
+                label: Text("Incomplete"),
+                selected: state.filter == ToDoFilter.incomplete,
+                onSelected: (_) => mainBloc.add(
+                    const MainEvent.filterChanged(ToDoFilter.incomplete)),
+              ),
+            ],
           );
         },
       ),
