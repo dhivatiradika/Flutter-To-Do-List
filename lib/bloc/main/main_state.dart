@@ -1,10 +1,9 @@
-part of 'main_cubit.dart';
+part of 'main_bloc.dart';
 
-abstract class MainState extends Equatable {
-  const MainState();
-}
-
-class MainInitial extends MainState {
-  @override
-  List<Object> get props => [];
+@freezed
+class MainState with _$MainState {
+  const factory MainState({
+    @Default(ToDoFilter.all) ToDoFilter filter,
+    @Default([]) List<ToDo> toDos,
+}) = _MainState;
 }
