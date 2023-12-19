@@ -19,6 +19,7 @@ mixin _$MainEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
     required TResult Function(bool isCompleted, int toDoId) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
@@ -27,6 +28,7 @@ mixin _$MainEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
     TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
@@ -35,6 +37,7 @@ mixin _$MainEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
     TResult Function(bool isCompleted, int toDoId)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
@@ -44,6 +47,7 @@ mixin _$MainEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ToDoUpdated value) toDoUpdated,
     required TResult Function(_FilterChanged value) filterChanged,
     required TResult Function(_ToDoChanged value) toDoChanged,
     required TResult Function(_ToDoDeleted value) todoDeleted,
@@ -52,6 +56,7 @@ mixin _$MainEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ToDoUpdated value)? toDoUpdated,
     TResult? Function(_FilterChanged value)? filterChanged,
     TResult? Function(_ToDoChanged value)? toDoChanged,
     TResult? Function(_ToDoDeleted value)? todoDeleted,
@@ -60,6 +65,7 @@ mixin _$MainEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ToDoUpdated value)? toDoUpdated,
     TResult Function(_FilterChanged value)? filterChanged,
     TResult Function(_ToDoChanged value)? toDoChanged,
     TResult Function(_ToDoDeleted value)? todoDeleted,
@@ -124,6 +130,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
     required TResult Function(bool isCompleted, int toDoId) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
@@ -135,6 +142,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
     TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
@@ -146,6 +154,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
     TResult Function(bool isCompleted, int toDoId)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
@@ -161,6 +170,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ToDoUpdated value) toDoUpdated,
     required TResult Function(_FilterChanged value) filterChanged,
     required TResult Function(_ToDoChanged value) toDoChanged,
     required TResult Function(_ToDoDeleted value) todoDeleted,
@@ -172,6 +182,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ToDoUpdated value)? toDoUpdated,
     TResult? Function(_FilterChanged value)? filterChanged,
     TResult? Function(_ToDoChanged value)? toDoChanged,
     TResult? Function(_ToDoDeleted value)? todoDeleted,
@@ -183,6 +194,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ToDoUpdated value)? toDoUpdated,
     TResult Function(_FilterChanged value)? filterChanged,
     TResult Function(_ToDoChanged value)? toDoChanged,
     TResult Function(_ToDoDeleted value)? todoDeleted,
@@ -197,6 +209,163 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements MainEvent {
   const factory _Loaded() = _$LoadedImpl;
+}
+
+/// @nodoc
+abstract class _$$ToDoUpdatedImplCopyWith<$Res> {
+  factory _$$ToDoUpdatedImplCopyWith(
+          _$ToDoUpdatedImpl value, $Res Function(_$ToDoUpdatedImpl) then) =
+      __$$ToDoUpdatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ToDo> todos});
+}
+
+/// @nodoc
+class __$$ToDoUpdatedImplCopyWithImpl<$Res>
+    extends _$MainEventCopyWithImpl<$Res, _$ToDoUpdatedImpl>
+    implements _$$ToDoUpdatedImplCopyWith<$Res> {
+  __$$ToDoUpdatedImplCopyWithImpl(
+      _$ToDoUpdatedImpl _value, $Res Function(_$ToDoUpdatedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? todos = null,
+  }) {
+    return _then(_$ToDoUpdatedImpl(
+      null == todos
+          ? _value._todos
+          : todos // ignore: cast_nullable_to_non_nullable
+              as List<ToDo>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToDoUpdatedImpl implements _ToDoUpdated {
+  const _$ToDoUpdatedImpl(final List<ToDo> todos) : _todos = todos;
+
+  final List<ToDo> _todos;
+  @override
+  List<ToDo> get todos {
+    if (_todos is EqualUnmodifiableListView) return _todos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_todos);
+  }
+
+  @override
+  String toString() {
+    return 'MainEvent.toDoUpdated(todos: $todos)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToDoUpdatedImpl &&
+            const DeepCollectionEquality().equals(other._todos, _todos));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_todos));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToDoUpdatedImplCopyWith<_$ToDoUpdatedImpl> get copyWith =>
+      __$$ToDoUpdatedImplCopyWithImpl<_$ToDoUpdatedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loaded,
+    required TResult Function(List<ToDo> todos) toDoUpdated,
+    required TResult Function(ToDoFilter filter) filterChanged,
+    required TResult Function(bool isCompleted, int toDoId) toDoChanged,
+    required TResult Function(int todoId) todoDeleted,
+  }) {
+    return toDoUpdated(todos);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loaded,
+    TResult? Function(List<ToDo> todos)? toDoUpdated,
+    TResult? Function(ToDoFilter filter)? filterChanged,
+    TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult? Function(int todoId)? todoDeleted,
+  }) {
+    return toDoUpdated?.call(todos);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loaded,
+    TResult Function(List<ToDo> todos)? toDoUpdated,
+    TResult Function(ToDoFilter filter)? filterChanged,
+    TResult Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult Function(int todoId)? todoDeleted,
+    required TResult orElse(),
+  }) {
+    if (toDoUpdated != null) {
+      return toDoUpdated(todos);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ToDoUpdated value) toDoUpdated,
+    required TResult Function(_FilterChanged value) filterChanged,
+    required TResult Function(_ToDoChanged value) toDoChanged,
+    required TResult Function(_ToDoDeleted value) todoDeleted,
+  }) {
+    return toDoUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ToDoUpdated value)? toDoUpdated,
+    TResult? Function(_FilterChanged value)? filterChanged,
+    TResult? Function(_ToDoChanged value)? toDoChanged,
+    TResult? Function(_ToDoDeleted value)? todoDeleted,
+  }) {
+    return toDoUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_ToDoUpdated value)? toDoUpdated,
+    TResult Function(_FilterChanged value)? filterChanged,
+    TResult Function(_ToDoChanged value)? toDoChanged,
+    TResult Function(_ToDoDeleted value)? todoDeleted,
+    required TResult orElse(),
+  }) {
+    if (toDoUpdated != null) {
+      return toDoUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToDoUpdated implements MainEvent {
+  const factory _ToDoUpdated(final List<ToDo> todos) = _$ToDoUpdatedImpl;
+
+  List<ToDo> get todos;
+  @JsonKey(ignore: true)
+  _$$ToDoUpdatedImplCopyWith<_$ToDoUpdatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -264,6 +433,7 @@ class _$FilterChangedImpl implements _FilterChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
     required TResult Function(bool isCompleted, int toDoId) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
@@ -275,6 +445,7 @@ class _$FilterChangedImpl implements _FilterChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
     TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
@@ -286,6 +457,7 @@ class _$FilterChangedImpl implements _FilterChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
     TResult Function(bool isCompleted, int toDoId)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
@@ -301,6 +473,7 @@ class _$FilterChangedImpl implements _FilterChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ToDoUpdated value) toDoUpdated,
     required TResult Function(_FilterChanged value) filterChanged,
     required TResult Function(_ToDoChanged value) toDoChanged,
     required TResult Function(_ToDoDeleted value) todoDeleted,
@@ -312,6 +485,7 @@ class _$FilterChangedImpl implements _FilterChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ToDoUpdated value)? toDoUpdated,
     TResult? Function(_FilterChanged value)? filterChanged,
     TResult? Function(_ToDoChanged value)? toDoChanged,
     TResult? Function(_ToDoDeleted value)? todoDeleted,
@@ -323,6 +497,7 @@ class _$FilterChangedImpl implements _FilterChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ToDoUpdated value)? toDoUpdated,
     TResult Function(_FilterChanged value)? filterChanged,
     TResult Function(_ToDoChanged value)? toDoChanged,
     TResult Function(_ToDoDeleted value)? todoDeleted,
@@ -418,6 +593,7 @@ class _$ToDoChangedImpl implements _ToDoChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
     required TResult Function(bool isCompleted, int toDoId) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
@@ -429,6 +605,7 @@ class _$ToDoChangedImpl implements _ToDoChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
     TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
@@ -440,6 +617,7 @@ class _$ToDoChangedImpl implements _ToDoChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
     TResult Function(bool isCompleted, int toDoId)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
@@ -455,6 +633,7 @@ class _$ToDoChangedImpl implements _ToDoChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ToDoUpdated value) toDoUpdated,
     required TResult Function(_FilterChanged value) filterChanged,
     required TResult Function(_ToDoChanged value) toDoChanged,
     required TResult Function(_ToDoDeleted value) todoDeleted,
@@ -466,6 +645,7 @@ class _$ToDoChangedImpl implements _ToDoChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ToDoUpdated value)? toDoUpdated,
     TResult? Function(_FilterChanged value)? filterChanged,
     TResult? Function(_ToDoChanged value)? toDoChanged,
     TResult? Function(_ToDoDeleted value)? todoDeleted,
@@ -477,6 +657,7 @@ class _$ToDoChangedImpl implements _ToDoChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ToDoUpdated value)? toDoUpdated,
     TResult Function(_FilterChanged value)? filterChanged,
     TResult Function(_ToDoChanged value)? toDoChanged,
     TResult Function(_ToDoDeleted value)? todoDeleted,
@@ -565,6 +746,7 @@ class _$ToDoDeletedImpl implements _ToDoDeleted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
     required TResult Function(bool isCompleted, int toDoId) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
@@ -576,6 +758,7 @@ class _$ToDoDeletedImpl implements _ToDoDeleted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
     TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
@@ -587,6 +770,7 @@ class _$ToDoDeletedImpl implements _ToDoDeleted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
     TResult Function(bool isCompleted, int toDoId)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
@@ -602,6 +786,7 @@ class _$ToDoDeletedImpl implements _ToDoDeleted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ToDoUpdated value) toDoUpdated,
     required TResult Function(_FilterChanged value) filterChanged,
     required TResult Function(_ToDoChanged value) toDoChanged,
     required TResult Function(_ToDoDeleted value) todoDeleted,
@@ -613,6 +798,7 @@ class _$ToDoDeletedImpl implements _ToDoDeleted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ToDoUpdated value)? toDoUpdated,
     TResult? Function(_FilterChanged value)? filterChanged,
     TResult? Function(_ToDoChanged value)? toDoChanged,
     TResult? Function(_ToDoDeleted value)? todoDeleted,
@@ -624,6 +810,7 @@ class _$ToDoDeletedImpl implements _ToDoDeleted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ToDoUpdated value)? toDoUpdated,
     TResult Function(_FilterChanged value)? filterChanged,
     TResult Function(_ToDoChanged value)? toDoChanged,
     TResult Function(_ToDoDeleted value)? todoDeleted,

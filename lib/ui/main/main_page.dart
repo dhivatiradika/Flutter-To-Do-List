@@ -17,6 +17,7 @@ class MainPage extends StatelessWidget {
         child: Column(
           children: [
             _Header(),
+            Expanded(child: _Body()),
           ],
         ),
       ),
@@ -74,8 +75,8 @@ class _Filter extends StatelessWidget {
               ChoiceChip(
                 label: Text("All"),
                 selected: state.filter == ToDoFilter.all,
-                onSelected: (_) => mainBloc
-                    .add(const MainEvent.filterChanged(ToDoFilter.all)),
+                onSelected: (_) =>
+                    mainBloc.add(const MainEvent.filterChanged(ToDoFilter.all)),
               ),
               const SizedBox(width: 5),
               ChoiceChip(
@@ -88,13 +89,34 @@ class _Filter extends StatelessWidget {
               ChoiceChip(
                 label: Text("Incomplete"),
                 selected: state.filter == ToDoFilter.incomplete,
-                onSelected: (_) => mainBloc.add(
-                    const MainEvent.filterChanged(ToDoFilter.incomplete)),
+                onSelected: (_) => mainBloc
+                    .add(const MainEvent.filterChanged(ToDoFilter.incomplete)),
               ),
             ],
           );
         },
       ),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MainBloc, MainState>(
+      builder: (context, state) {
+        if (state.toDos.isEmpty) {
+          return Text("No To Do");
+        } else {
+          return ListView.builder(
+            itemCount: state.toDos.length,
+            itemBuilder: (context, index) {
+              var toDo = state.toDos[index];
+              return Text(toDo.title);
+            },
+          );
+        }
+      },
     );
   }
 }

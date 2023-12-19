@@ -14,12 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+ToDo _$ToDoFromJson(Map<String, dynamic> json) {
+  return _ToDo.fromJson(json);
+}
+
 /// @nodoc
 mixin _$ToDo {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  @BoolConverter()
   bool get isCompleted => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ToDoCopyWith<ToDo> get copyWith => throw _privateConstructorUsedError;
 }
@@ -29,7 +35,7 @@ abstract class $ToDoCopyWith<$Res> {
   factory $ToDoCopyWith(ToDo value, $Res Function(ToDo) then) =
       _$ToDoCopyWithImpl<$Res, ToDo>;
   @useResult
-  $Res call({int id, String title, bool isCompleted});
+  $Res call({int? id, String title, @BoolConverter() bool isCompleted});
 }
 
 /// @nodoc
@@ -45,15 +51,15 @@ class _$ToDoCopyWithImpl<$Res, $Val extends ToDo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = null,
     Object? isCompleted = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -73,7 +79,7 @@ abstract class _$$ToDoImplCopyWith<$Res> implements $ToDoCopyWith<$Res> {
       __$$ToDoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, bool isCompleted});
+  $Res call({int? id, String title, @BoolConverter() bool isCompleted});
 }
 
 /// @nodoc
@@ -86,15 +92,15 @@ class __$$ToDoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = null,
     Object? isCompleted = null,
   }) {
     return _then(_$ToDoImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -108,16 +114,22 @@ class __$$ToDoImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ToDoImpl implements _ToDo {
   const _$ToDoImpl(
-      {required this.id, required this.title, required this.isCompleted});
+      {this.id,
+      required this.title,
+      @BoolConverter() required this.isCompleted});
+
+  factory _$ToDoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ToDoImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String title;
   @override
+  @BoolConverter()
   final bool isCompleted;
 
   @override
@@ -136,6 +148,7 @@ class _$ToDoImpl implements _ToDo {
                 other.isCompleted == isCompleted));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, isCompleted);
 
@@ -144,19 +157,29 @@ class _$ToDoImpl implements _ToDo {
   @pragma('vm:prefer-inline')
   _$$ToDoImplCopyWith<_$ToDoImpl> get copyWith =>
       __$$ToDoImplCopyWithImpl<_$ToDoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ToDoImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _ToDo implements ToDo {
   const factory _ToDo(
-      {required final int id,
+      {final int? id,
       required final String title,
-      required final bool isCompleted}) = _$ToDoImpl;
+      @BoolConverter() required final bool isCompleted}) = _$ToDoImpl;
+
+  factory _ToDo.fromJson(Map<String, dynamic> json) = _$ToDoImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get title;
   @override
+  @BoolConverter()
   bool get isCompleted;
   @override
   @JsonKey(ignore: true)
