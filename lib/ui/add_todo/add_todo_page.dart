@@ -53,23 +53,23 @@ class _AddToDoPageState extends State<AddToDoPage> {
                 children: [
                   TextField(
                     controller: titleController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "your to do title...",
                     ),
                     style: primaryTextStyle,
                   ),
                   const SizedBox(height: 10),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () => context.read<AddToDoBloc>().add(AddToDoEvent.onSubmitted(titleController.text)),
-                      child: Text("SAVE"),
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                       ),
+                      child: const Text("SAVE"),
                     ),
                   )
                 ],

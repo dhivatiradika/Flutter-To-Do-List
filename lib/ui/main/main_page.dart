@@ -44,14 +44,14 @@ class _Header extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () => context.router.goToAddToDoPage(),
-                child: Icon(
+                style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(5),
+                    backgroundColor: primaryColor),
+                child: const Icon(
                   Icons.add,
                   color: Colors.white,
                 ),
-                style: ElevatedButton.styleFrom(
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(5),
-                    backgroundColor: primaryColor),
               ),
             ],
           ),
@@ -74,21 +74,21 @@ class _Filter extends StatelessWidget {
           return Row(
             children: [
               ChoiceChip(
-                label: Text("All"),
+                label: const Text("All"),
                 selected: state.filter == ToDoFilter.all,
                 onSelected: (_) =>
                     mainBloc.add(const MainEvent.filterChanged(ToDoFilter.all)),
               ),
               const SizedBox(width: 5),
               ChoiceChip(
-                label: Text("Completed"),
+                label: const Text("Completed"),
                 selected: state.filter == ToDoFilter.completed,
                 onSelected: (_) => mainBloc
                     .add(const MainEvent.filterChanged(ToDoFilter.completed)),
               ),
               const SizedBox(width: 5),
               ChoiceChip(
-                label: Text("Incomplete"),
+                label: const Text("Incomplete"),
                 selected: state.filter == ToDoFilter.incomplete,
                 onSelected: (_) => mainBloc
                     .add(const MainEvent.filterChanged(ToDoFilter.incomplete)),
