@@ -21,7 +21,7 @@ mixin _$MainEvent {
     required TResult Function() loaded,
     required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
-    required TResult Function(bool isCompleted, int toDoId) toDoChanged,
+    required TResult Function(ToDo toDo) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$MainEvent {
     TResult? Function()? loaded,
     TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
-    TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult? Function(ToDo toDo)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$MainEvent {
     TResult Function()? loaded,
     TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
-    TResult Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult Function(ToDo toDo)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
     required TResult orElse(),
   }) =>
@@ -132,7 +132,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() loaded,
     required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
-    required TResult Function(bool isCompleted, int toDoId) toDoChanged,
+    required TResult Function(ToDo toDo) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
   }) {
     return loaded();
@@ -144,7 +144,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? loaded,
     TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
-    TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult? Function(ToDo toDo)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
   }) {
     return loaded?.call();
@@ -156,7 +156,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? loaded,
     TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
-    TResult Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult Function(ToDo toDo)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
     required TResult orElse(),
   }) {
@@ -284,7 +284,7 @@ class _$ToDoUpdatedImpl implements _ToDoUpdated {
     required TResult Function() loaded,
     required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
-    required TResult Function(bool isCompleted, int toDoId) toDoChanged,
+    required TResult Function(ToDo toDo) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
   }) {
     return toDoUpdated(todos);
@@ -296,7 +296,7 @@ class _$ToDoUpdatedImpl implements _ToDoUpdated {
     TResult? Function()? loaded,
     TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
-    TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult? Function(ToDo toDo)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
   }) {
     return toDoUpdated?.call(todos);
@@ -308,7 +308,7 @@ class _$ToDoUpdatedImpl implements _ToDoUpdated {
     TResult Function()? loaded,
     TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
-    TResult Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult Function(ToDo toDo)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
     required TResult orElse(),
   }) {
@@ -435,7 +435,7 @@ class _$FilterChangedImpl implements _FilterChanged {
     required TResult Function() loaded,
     required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
-    required TResult Function(bool isCompleted, int toDoId) toDoChanged,
+    required TResult Function(ToDo toDo) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
   }) {
     return filterChanged(filter);
@@ -447,7 +447,7 @@ class _$FilterChangedImpl implements _FilterChanged {
     TResult? Function()? loaded,
     TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
-    TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult? Function(ToDo toDo)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
   }) {
     return filterChanged?.call(filter);
@@ -459,7 +459,7 @@ class _$FilterChangedImpl implements _FilterChanged {
     TResult Function()? loaded,
     TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
-    TResult Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult Function(ToDo toDo)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
     required TResult orElse(),
   }) {
@@ -525,7 +525,9 @@ abstract class _$$ToDoChangedImplCopyWith<$Res> {
           _$ToDoChangedImpl value, $Res Function(_$ToDoChangedImpl) then) =
       __$$ToDoChangedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({bool isCompleted, int toDoId});
+  $Res call({ToDo toDo});
+
+  $ToDoCopyWith<$Res> get toDo;
 }
 
 /// @nodoc
@@ -539,35 +541,36 @@ class __$$ToDoChangedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isCompleted = null,
-    Object? toDoId = null,
+    Object? toDo = null,
   }) {
     return _then(_$ToDoChangedImpl(
-      null == isCompleted
-          ? _value.isCompleted
-          : isCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      null == toDoId
-          ? _value.toDoId
-          : toDoId // ignore: cast_nullable_to_non_nullable
-              as int,
+      null == toDo
+          ? _value.toDo
+          : toDo // ignore: cast_nullable_to_non_nullable
+              as ToDo,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ToDoCopyWith<$Res> get toDo {
+    return $ToDoCopyWith<$Res>(_value.toDo, (value) {
+      return _then(_value.copyWith(toDo: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$ToDoChangedImpl implements _ToDoChanged {
-  const _$ToDoChangedImpl(this.isCompleted, this.toDoId);
+  const _$ToDoChangedImpl(this.toDo);
 
   @override
-  final bool isCompleted;
-  @override
-  final int toDoId;
+  final ToDo toDo;
 
   @override
   String toString() {
-    return 'MainEvent.toDoChanged(isCompleted: $isCompleted, toDoId: $toDoId)';
+    return 'MainEvent.toDoChanged(toDo: $toDo)';
   }
 
   @override
@@ -575,13 +578,11 @@ class _$ToDoChangedImpl implements _ToDoChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ToDoChangedImpl &&
-            (identical(other.isCompleted, isCompleted) ||
-                other.isCompleted == isCompleted) &&
-            (identical(other.toDoId, toDoId) || other.toDoId == toDoId));
+            (identical(other.toDo, toDo) || other.toDo == toDo));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isCompleted, toDoId);
+  int get hashCode => Object.hash(runtimeType, toDo);
 
   @JsonKey(ignore: true)
   @override
@@ -595,10 +596,10 @@ class _$ToDoChangedImpl implements _ToDoChanged {
     required TResult Function() loaded,
     required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
-    required TResult Function(bool isCompleted, int toDoId) toDoChanged,
+    required TResult Function(ToDo toDo) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
   }) {
-    return toDoChanged(isCompleted, toDoId);
+    return toDoChanged(toDo);
   }
 
   @override
@@ -607,10 +608,10 @@ class _$ToDoChangedImpl implements _ToDoChanged {
     TResult? Function()? loaded,
     TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
-    TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult? Function(ToDo toDo)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
   }) {
-    return toDoChanged?.call(isCompleted, toDoId);
+    return toDoChanged?.call(toDo);
   }
 
   @override
@@ -619,12 +620,12 @@ class _$ToDoChangedImpl implements _ToDoChanged {
     TResult Function()? loaded,
     TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
-    TResult Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult Function(ToDo toDo)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
     required TResult orElse(),
   }) {
     if (toDoChanged != null) {
-      return toDoChanged(isCompleted, toDoId);
+      return toDoChanged(toDo);
     }
     return orElse();
   }
@@ -671,11 +672,9 @@ class _$ToDoChangedImpl implements _ToDoChanged {
 }
 
 abstract class _ToDoChanged implements MainEvent {
-  const factory _ToDoChanged(final bool isCompleted, final int toDoId) =
-      _$ToDoChangedImpl;
+  const factory _ToDoChanged(final ToDo toDo) = _$ToDoChangedImpl;
 
-  bool get isCompleted;
-  int get toDoId;
+  ToDo get toDo;
   @JsonKey(ignore: true)
   _$$ToDoChangedImplCopyWith<_$ToDoChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -748,7 +747,7 @@ class _$ToDoDeletedImpl implements _ToDoDeleted {
     required TResult Function() loaded,
     required TResult Function(List<ToDo> todos) toDoUpdated,
     required TResult Function(ToDoFilter filter) filterChanged,
-    required TResult Function(bool isCompleted, int toDoId) toDoChanged,
+    required TResult Function(ToDo toDo) toDoChanged,
     required TResult Function(int todoId) todoDeleted,
   }) {
     return todoDeleted(todoId);
@@ -760,7 +759,7 @@ class _$ToDoDeletedImpl implements _ToDoDeleted {
     TResult? Function()? loaded,
     TResult? Function(List<ToDo> todos)? toDoUpdated,
     TResult? Function(ToDoFilter filter)? filterChanged,
-    TResult? Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult? Function(ToDo toDo)? toDoChanged,
     TResult? Function(int todoId)? todoDeleted,
   }) {
     return todoDeleted?.call(todoId);
@@ -772,7 +771,7 @@ class _$ToDoDeletedImpl implements _ToDoDeleted {
     TResult Function()? loaded,
     TResult Function(List<ToDo> todos)? toDoUpdated,
     TResult Function(ToDoFilter filter)? filterChanged,
-    TResult Function(bool isCompleted, int toDoId)? toDoChanged,
+    TResult Function(ToDo toDo)? toDoChanged,
     TResult Function(int todoId)? todoDeleted,
     required TResult orElse(),
   }) {

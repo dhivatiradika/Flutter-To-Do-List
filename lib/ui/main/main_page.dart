@@ -4,6 +4,7 @@ import 'package:to_do_list/bloc/main/main_bloc.dart';
 import 'package:to_do_list/common/router.dart';
 import 'package:to_do_list/common/theme.dart';
 import 'package:to_do_list/entities/todo_filter.dart';
+import 'package:to_do_list/widget/to_do_item.dart';
 
 class MainPage extends StatelessWidget {
   static const routeName = "/main_page";
@@ -106,13 +107,32 @@ class _Body extends StatelessWidget {
     return BlocBuilder<MainBloc, MainState>(
       builder: (context, state) {
         if (state.toDos.isEmpty) {
-          return Text("No To Do");
+          return Container(
+            padding: const EdgeInsets.only(top: 200),
+            child: Text(
+              "No To Do",
+              style: primaryTextStyle,
+            ),
+          );
         } else {
           return ListView.builder(
             itemCount: state.toDos.length,
             itemBuilder: (context, index) {
               var toDo = state.toDos[index];
-              return Text(toDo.title);
+              return InkWell(
+                onTap: () => context.read<MainBloc>().add(
+                      MainEvent.toDoChanged(
+                        toDo.copyWith(isCompleted: !toDo.isCompleted),
+                      ),
+                    ),
+                child: Dismissible(
+                  key: Key(toDo.id.toString()),
+                  onDismissed: (direction) => context.read<MainBloc>().add(
+                        MainEvent.todoDeleted(toDo.id ?? 0),
+                      ),
+                  child: ToDoItem(toDo: toDo),
+                ),
+              );
             },
           );
         }

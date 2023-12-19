@@ -50,6 +50,17 @@ class DatabaseHelper {
     return results.map((res) => ToDo.fromJson(res)).toList();
   }
 
+  Future<List<ToDo>> getToDoByStatus(bool isCompleted) async {
+    final Database db = await database;
+    List<Map<String, dynamic>> results = await db.query(
+      _tableName,
+      where: 'isCompleted = ?',
+      whereArgs: [isCompleted.toString()],
+    );
+
+    return results.map((res) => ToDo.fromJson(res)).toList();
+  }
+
   Future<void> updateToDo(ToDo toDo) async {
     final db = await database;
 

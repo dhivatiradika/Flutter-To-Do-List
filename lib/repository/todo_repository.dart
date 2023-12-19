@@ -1,36 +1,47 @@
 import 'dart:async';
 import 'package:to_do_list/data/local/database_helper.dart';
 import 'package:to_do_list/entities/todo.dart';
+import 'package:to_do_list/entities/todo_filter.dart';
 
 class ToDoRepository {
   ToDoRepository({required DatabaseHelper db}) : _db = db;
 
   final DatabaseHelper _db;
+  ToDoFilter _filter = ToDoFilter.all;
   final StreamController<List<ToDo>> _controller = StreamController<List<ToDo>>.broadcast();
 
   Stream<List<ToDo>> getToDos() {
-    _getToDos();
+    getAllToDos(_filter);
     return _controller.stream;
   }
 
-  Future<void> _getToDos() async {
-    var toDos = await _db.getToDo();
+  Future<void> getAllToDos(ToDoFilter filter) async {
+    _filter = filter;
+    List<ToDo> toDos = [];
+    switch (filter) {
+      case ToDoFilter.all:
+        toDos = await _db.getToDo();
+      case ToDoFilter.incomplete:
+        toDos = await _db.getToDoByStatus(false);
+      case ToDoFilter.completed:
+        toDos = await _db.getToDoByStatus(true);
+    }
     _controller.add(toDos);
   }
 
   Future<bool> addToDo(ToDo toDo) async {
     var res = await _db.insertToDo(toDo);
-    _getToDos();
+    getAllToDos(_filter);
     return res;
   }
 
   void changeToDoStatus(ToDo toDo) {
     _db.updateToDo(toDo);
-    _getToDos();
+    getAllToDos(_filter);
   }
 
   void deleteToDo(int id) {
     _db.deleteToDo(id);
-    _getToDos();
+    getAllToDos(_filter);
   }
 }

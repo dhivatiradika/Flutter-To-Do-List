@@ -35,11 +35,16 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   void _filterChanged(_FilterChanged event, Emitter<MainState> emit) {
     emit(state.copyWith(filter: event.filter));
+    _repository.getAllToDos(state.filter);
   }
 
-  void _toDoChanged(_ToDoChanged event, Emitter<MainState> emit) {}
+  void _toDoChanged(_ToDoChanged event, Emitter<MainState> emit) {
+    _repository.changeToDoStatus(event.toDo);
+  }
 
-  void _toDoDeleted(_ToDoDeleted event, Emitter<MainState> emit) {}
+  void _toDoDeleted(_ToDoDeleted event, Emitter<MainState> emit) {
+    _repository.deleteToDo(event.todoId);
+  }
 
   @override
   Future<void> close() {
